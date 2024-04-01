@@ -13,6 +13,15 @@ import { PastTrainingComponent } from './past-training/past-training.component';
 import { TrainingComponent } from './training/training.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { FormsModule } from '@angular/forms';
+import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+} from '@angular/material/core';
+import {
+  MaterialPersianDateAdapter,
+  PERSIAN_DATE_FORMATS,
+} from './persion-dateadapter';
 
 @NgModule({
   declarations: [
@@ -33,7 +42,14 @@ import { FormsModule } from '@angular/forms';
     FlexLayoutModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: DateAdapter,
+      useClass: MaterialPersianDateAdapter,
+      deps: [MAT_DATE_LOCALE],
+    },
+    { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

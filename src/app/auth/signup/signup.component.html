@@ -2,6 +2,7 @@
   <form
     fxLayout="column"
     fxLayoutAlign="center center"
+    fxLayoutGap="10px"
     #form="ngForm"
     (ngSubmit)="onSubmit()"
   >
@@ -9,7 +10,7 @@
       <input
         matInput
         type="text"
-        placeholder="email"
+        placeholder="ایمیل"
         ngModel
         required
         email
@@ -17,17 +18,17 @@
         #emailInput="ngModel"
       />
       <mat-error *ngIf="emailInput.hasError('required')"
-        >Email is not be empty</mat-error
+        >ایمیل نباید خالی باشد.</mat-error
       >
       <mat-error *ngIf="!emailInput.hasError('required')"
-        >Email is invalid</mat-error
+        >ایمیل نامعتبر است.</mat-error
       >
     </mat-form-field>
-    <mat-form-field hintLabel="Should be at least 6 characters long">
+    <mat-form-field hintLabel="رمز عبور باید 6 کاراکتر باشد.">
       <input
         matInput
         type="password"
-        placeholder="password"
+        placeholder="رمز عبور"
         ngModel
         name="password"
         required
@@ -35,9 +36,36 @@
         #passwordInput="ngModel"
       />
       <mat-hint align="end">{{ passwordInput.value?.length }}/6</mat-hint>
-      <mat-error>Has to be at least 6 characters long</mat-error>
+      <mat-error>رمز عبور باید 6 کاراکتر باشد.</mat-error>
     </mat-form-field>
 
-    <button type="submit" mat-raised-button color="primary">Submit</button>
+    <mat-form-field>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        placeholder="تولد"
+        ngModel
+        required
+        name="birthday"
+      />
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-checkbox ngModel name="agree" color="primary"
+      >با شرایط و قوانین موافقم.</mat-checkbox
+    >
+
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="!form.valid"
+    >
+      ثبت
+    </button>
   </form>
 </section>
