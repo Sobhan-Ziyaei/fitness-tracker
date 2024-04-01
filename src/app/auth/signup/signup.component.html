@@ -9,19 +9,33 @@
       <input
         matInput
         type="text"
-        placeholder="username"
+        placeholder="email"
         ngModel
-        name="username"
+        required
+        email
+        name="email"
+        #emailInput="ngModel"
       />
+      <mat-error *ngIf="emailInput.hasError('required')"
+        >Email is not be empty</mat-error
+      >
+      <mat-error *ngIf="!emailInput.hasError('required')"
+        >Email is invalid</mat-error
+      >
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field hintLabel="Should be at least 6 characters long">
       <input
         matInput
         type="password"
         placeholder="password"
         ngModel
         name="password"
+        required
+        minlength="6"
+        #passwordInput="ngModel"
       />
+      <mat-hint align="end">{{ passwordInput.value?.length }}/6</mat-hint>
+      <mat-error>Has to be at least 6 characters long</mat-error>
     </mat-form-field>
 
     <button type="submit" mat-raised-button color="primary">Submit</button>
