@@ -1,8 +1,14 @@
-<mat-tab-group>
+<mat-tab-group *ngIf="!trainingStart">
   <mat-tab label="تمرین جدید">
-    <app-new-training></app-new-training>
+    <app-new-training
+      (isTrainingStart)="trainingStart = true"
+    ></app-new-training>
   </mat-tab>
   <mat-tab label="تمرین‌های قبلی">
     <app-past-training> </app-past-training>
   </mat-tab>
 </mat-tab-group>
+<app-current-training
+  *ngIf="trainingStart"
+  (isStopTraining)="trainingStart = false"
+></app-current-training>

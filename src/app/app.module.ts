@@ -22,6 +22,7 @@ import {
   MaterialPersianDateAdapter,
   PERSIAN_DATE_FORMATS,
 } from './persion-dateadapter';
+import { StopTrainingComponent } from './current-training/stop-training/stop-training.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {
     PastTrainingComponent,
     TrainingComponent,
     WelcomeComponent,
+    StopTrainingComponent,
   ],
   imports: [
     BrowserModule,
